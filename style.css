@@ -1,0 +1,56 @@
+html,body{
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+    gap: 10px;
+}
+
+#options,#result{
+    width: 80%;
+    height: 40%;
+    border: 1px solid black;
+    display: flex;
+    padding: 5px;
+    gap: 5px;
+    overflow: scroll;
+}
+
+#options button{
+    flex: 1 0;
+    border-radius: 5px;
+}
+
+#options button:hover{
+    cursor: pointer;
+}
+
+.button{
+    background-size: contain;
+    background-color: black;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#options button#rock{
+    background-image: url("images/rock.svg");
+}
+#options button#paper{
+    background-image: url("images/paper.svg");
+}
+#options button#scissor{
+    background-image: url("images/fingers-crossed.svg");
+}
+
+#result{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
