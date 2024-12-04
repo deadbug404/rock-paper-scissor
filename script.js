@@ -22,7 +22,7 @@ function playRound(humanChoice, computerChoice){
             }else if(computerChoice == "paper"){
                 return "You lose! Paper beats Rock";
             }else if(computerChoice == "scissor"){
-                console.log("You win! Rock beats Scissor")
+                return "You win! Rock beats Scissor";
             }
         }else if (humanChoice == "paper"){
             if (computerChoice == "rock"){
@@ -44,7 +44,35 @@ function playRound(humanChoice, computerChoice){
 
 }
 
+function checkWinner(humanScore, computerScore, roundResult){
+    if (humanScore > computerScore){
+        roundResult.textContent = "YOU WON THE GAME, CONGRATULATIONS!";
+        roundResult.style.color = "green";
+    }else if(computerScore > humanScore){  
+        roundResult.textContent = "YOU LOST THE GAME, BETTER LUCK NEXT TIME!";
+        roundResult.style.color = "red";
+    }else{
+        roundResult.textContent = "YOU TIED, NICE TRY!";
+        roundResult.style.color = "brown";
+    }
+}
+
+function disableButtons(){
+    buttons = document.querySelectorAll(".button");
+    buttons.forEach(button => button.disabled = true);
+}
+
+function reset(){
+    window.location.reload();
+}
+
+
 function playGame(e){
+    if(e.target.id === "options"){
+        return;
+    }
+
+
     let humanChoice = getHumanChoice(e);
     let computerChoice = getComputerChoice();
     let round = playRound(humanChoice, computerChoice);
@@ -52,17 +80,35 @@ function playGame(e){
     const humanResult = document.querySelector("#human-choice");
     const computerResult = document.querySelector("#computer-choice");
     const roundResult = document.querySelector("#round-result");
+    const humanScore = document.querySelector("#human-score");
+    const computerScore = document.querySelector("#computer-score");
+    const roundCount = document.querySelector("#round");
 
-    humanResult.textContent = `You chose ${humanChoice}`;
-    computerResult.textContent = `The computer chose ${computerChoice}`;
+    humanResult.src= `images/${humanChoice}.svg`;
+    computerResult.src = `images/${computerChoice}.svg`;
     roundResult.textContent = `${round}`;
 
-
+    const resultArray = round.split(" ");
+    if(resultArray.includes("win!")){
+        currScore = parseInt(humanScore.textContent)+1;
+        humanScore.textContent = currScore;
+    }else if(resultArray.includes("lose!")){
+        currScore = parseInt(computerScore.textContent)+1;
+        computerScore.textContent = currScore;
+    }
+    roundCount.textContent = parseInt(roundCount.textContent)+1;   
+    
+    if(roundCount.textContent === "5"){
+        checkWinner(humanScore.textContent, computerScore.textContent, roundResult);
+        disableButtons();
+    }
 }
 
 const listener = document.querySelector("#options");
+const resetButton = document.querySelector("#reset");
 
 listener.addEventListener("click", playGame);
+resetButton.addEventListener("click", reset);
 
 
 

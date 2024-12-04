@@ -15,9 +15,27 @@
             <button id="scissor" class="button"></button>
         </div>
         <div id="result">
-            <h3 id="human-choice">Waiting for your choice . . .</h3>
-            <h3 id="computer-choice">Waiting for your choice . . .</h3>
-            <h3 id="round-result">Waiting for the round . . .</h3>
+            <div id="left">
+                <div id="tag">
+                    <h3>You</h3>
+                    <h3>Computer</h3>
+                </div>
+                <div id="image-choices">
+                    <img id="human-choice">
+                    <img id="computer-choice">
+                </div>
+                <p id="round-result">Waiting for the round . . . </p>
+            </div>
+            <div id="right">
+                <h3>Round <span id="round">0</span></h3>
+                <div id="score-info">
+                    <p>Human: <span id="human-score">0</span></p>
+                    <p>Computer: <span id="computer-score">0</span></p>
+                </div>
+                <div id="settings">
+                    <button id="reset">RESET</button>
+                </div>
+            </div>
         </div>
     </div>
 </body>
